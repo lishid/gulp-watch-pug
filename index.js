@@ -1,6 +1,8 @@
 'use strict';
 
 var path = require('path');
+var fs = require('fs');
+var glob = require('glob');
 var es = require('event-stream');
 var vinyl = require('vinyl-file');
 var jade_dependency = require('jade-dependency');
@@ -50,9 +52,30 @@ module.exports = function (globs, options) {
         request_flush();
     }
 
+    var mtime_cache = {};
+
     stream = es.through(function (file) {
         var abs_path = path.resolve(file.path);
+
+        try {
+            // Prevent unchanged files from triggering
+            var mtime = fs.statSync(abs_path).mtime.getTime();
+            var last_mtime = mtime_cache[abs_path];
+            mtime_cache[abs_path] = mtime;
+            if (last_mtime === mtime) {
+                return;
+            }
+            if (!last_mtime) {
+                // Initial scan, skip dependency graph
+                add_file(abs_path, file);
+                return;
+            }
+        } catch (e) {
+            // File might be gone.
+        }
+
         add_file(abs_path, file);
+
         dependency.file_changed(abs_path);
         dependency.find_dependents(abs_path).map(add_path);
     });

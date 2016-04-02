@@ -2,7 +2,7 @@
 
 var path = require('path');
 var fs = require('fs');
-var glob = require('glob');
+var glob_parent = require('glob-parent');
 var es = require('event-stream');
 var vinyl = require('vinyl-file');
 var jade_dependency = require('jade-dependency');
@@ -11,6 +11,7 @@ module.exports = function (globs, options) {
     options = options || {};
 
     var delay = options.delay || 100;
+	var base = path.resolve(glob_parent(globs));
 
     var dependency = jade_dependency(globs, options);
     var stream;
@@ -25,7 +26,7 @@ module.exports = function (globs, options) {
 
         for (abs_path in paths) {
             if (!files[abs_path]) {
-                files[abs_path] = vinyl.readSync(abs_path);
+                files[abs_path] = vinyl.readSync(abs_path, {base: base});
             }
         }
         paths = {};

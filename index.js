@@ -5,7 +5,7 @@ var fs = require('fs');
 var glob_parent = require('glob-parent');
 var es = require('event-stream');
 var vinyl = require('vinyl-file');
-var jade_dependency = require('jade-dependency');
+var pug_dependency = require('pug-dependency');
 
 module.exports = function (globs, options) {
     options = options || {};
@@ -13,7 +13,7 @@ module.exports = function (globs, options) {
     var delay = options.delay || 100;
 	var base = path.resolve(glob_parent(globs));
 
-    var dependency = jade_dependency(globs, options);
+    var dependency = pug_dependency(globs, options);
     var stream;
 
     var files = {};

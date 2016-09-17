@@ -1,7 +1,7 @@
-gulp-watch-jade
+gulp-watch-pug
 ===========
 
-Gulp plugin to use with gulp-watch. Used to trigger recompilation of dependent jade files through include or extend.
+Gulp plugin to use with gulp-watch. Used to trigger recompilation of dependent pug files through include or extend.
 
 Usage
 ---
@@ -9,13 +9,13 @@ Usage
 
 var gulp = require('gulp');
 var watch = require('gulp-watch');
-var jade = require('gulp-jade');
-var gulp_watch_jade = require('gulp-watch-jade');
+var pug = require('gulp-pug');
+var gulp_watch_pug = require('gulp-watch-pug');
 
-gulp.src('jade/**/*.jade')
-    .pipe(watch('jade/**/*.jade'))
-    .pipe(gulp_watch_jade('jade/**/*.jade', { delay: 100 }))
-    .pipe(jade())
+gulp.src('pug/**/*.pug')
+    .pipe(watch('pug/**/*.pug'))
+    .pipe(gulp_watch_pug('pug/**/*.pug', { delay: 100 }))
+    .pipe(pug())
     .pipe(gulp.dest('html/'));
 
 ```
@@ -23,7 +23,7 @@ gulp.src('jade/**/*.jade')
 API
 ---
 
-### gulp_watch_jade(glob, options)
+### gulp_watch_pug(glob, options)
 
 glob: Start by watching these files for dependency. Futhur changes (such as new files) will automatically be remembered.
 

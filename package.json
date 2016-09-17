@@ -1,22 +1,22 @@
 {
-  "name": "gulp-watch-jade",
-  "description": "Find jade files that are affected by dependencies for use with gulp-watch",
-  "version": "1.0.2",
-  "homepage": "https://github.com/lishid/gulp-watch-jade",
-  "repository": "git://github.com/lishid/gulp-watch-jade.git",
+  "name": "gulp-watch-pug",
+  "description": "Find pug files that are affected by dependencies for use with gulp-watch",
+  "version": "1.0.0",
+  "homepage": "https://github.com/lishid/gulp-watch-pug",
+  "repository": "git://github.com/lishid/gulp-watch-pug.git",
   "author": "Shida Li <lishid@gmail.com>",
   "main": "./index.js",
   "keywords": [
     "gulpplugin",
     "gulp",
-    "jade",
+    "pug",
     "watch",
     "dependency"
   ],
   "dependencies": {
     "event-stream": "^3.3.2",
     "glob-parent": "^2.0.0",
-    "jade-dependency": "^1.0.1",
+    "pug-dependency": "^1.0.1",
     "vinyl-file": "^2.0.0"
   },
   "license": "MIT"
